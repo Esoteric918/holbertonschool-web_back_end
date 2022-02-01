@@ -1,0 +1,5 @@
+*main*
+*.json*
+*config*
+*.eslintrc*
+*node_modules*
