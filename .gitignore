@@ -3,3 +3,4 @@
 *config*
 *.eslintrc*
 *node_modules*
+*utils*
