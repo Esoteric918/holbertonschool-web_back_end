@@ -3,11 +3,12 @@ export default class HolbrertClass {
     this._size = size;
     this._location = location;
   }
+
   [Symbol.toPrimitive](hint) {
-    if (hint == 'number') {
+    if (hint === 'number') {
       return this._size;
     }
-    if (hint == 'string') {
+    if (hint === 'string') {
       return this._location;
     }
     return true;
