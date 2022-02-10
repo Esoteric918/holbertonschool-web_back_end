@@ -6,6 +6,6 @@ export default class Car {
   }
 
   cloneCar() {
-   return Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+    return Object.assign(Object.create(Object.getPrototypeOf(this)), this);
   }
 }
