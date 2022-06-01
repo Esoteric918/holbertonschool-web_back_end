@@ -12,4 +12,3 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
         '''returns a float n multiplied by multiplier'''
         return n * multiplier
     return multiplier_func
-    return lambda x: x * multiplier
