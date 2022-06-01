@@ -5,4 +5,4 @@
 
 def to_str(n: float) -> str:
     ''' type-annotated function to_str which takes a float n as argument'''
-    return str(n)
+    return n
