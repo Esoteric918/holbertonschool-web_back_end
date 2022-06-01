@@ -1,4 +1,4 @@
-#!/bin/bash/python3
+#!/usr/bin/env python3
 
 ''' type-annotated function to_kv which takes a string k
  and an int OR float v as arguments and returns a tuple
