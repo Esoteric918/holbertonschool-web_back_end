@@ -2,9 +2,7 @@
 
 '''duck-typed anonymous function'''
 
-
-
-from typing import Sequence, Any, Union, List
+from typing import Sequence, Any, Union
 
 
 def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
