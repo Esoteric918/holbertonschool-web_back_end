@@ -1,4 +1,4 @@
-#!/bin/bash/evn python3
+#!/bin/evn python3
 
 '''duck-typed anonymous function'''
 
