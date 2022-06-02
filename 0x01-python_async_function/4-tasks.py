@@ -7,7 +7,7 @@ from typing import List
 
 
 async def task_wait_n(n, max_delay) -> List[float]:
-    '''return the list of all the delays (float values)'''
+    ''' Async function that calls task_wait_random n number of times'''
     delays: List = []
     for i in range(n):
         delay = task_wait_random(max_delay)
