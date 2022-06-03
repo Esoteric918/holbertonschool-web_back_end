@@ -6,7 +6,7 @@ import asyncio
 from typing import List
 
 
-async def wait_n(n, max_delay) -> List[float]:
+async def wait_n(n: int, max_delay: int = 10) -> List[float]:
     '''return the list of all the delays (float values)'''
     delays: List = []
     for i in range(n):
