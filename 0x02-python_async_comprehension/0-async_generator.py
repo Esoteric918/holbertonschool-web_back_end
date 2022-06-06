@@ -12,4 +12,4 @@ async def async_generator() -> Generator[float, None, None]:
     for i in range(10):
         result.append(uniform(0, 10))
         yield result[-1]
-        await asyncio.sleep(.1)
+        await asyncio.sleep(1)
