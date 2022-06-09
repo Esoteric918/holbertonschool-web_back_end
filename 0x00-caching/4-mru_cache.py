@@ -15,11 +15,12 @@ class MRUCache(BaseCaching):
     def put(self, key, item):
         """Add item to cache"""
         if key and item:
+            if len(self.cache_data) == self.MAX_ITEMS \
+                    and key not in self.cache_data:
+                poop = self.cache_data.popitem(last=False)
+                print('DISCARD: {}'.format(poop[0]))
             self.cache_data[key] = item
             self.cache_data.move_to_end(key, last=False)
-            if len(self.cache_data) > self.MAX_ITEMS:
-                key = self.cache_data.popitem(last=False)
-                print('DISCARD: {}'.format(key[0]))
 
     def get(self, key):
         """Get item from cache"""
