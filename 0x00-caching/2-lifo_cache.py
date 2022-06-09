@@ -2,7 +2,8 @@
 ''' 2-lifo_cache.py: LIFO Cache '''
 
 from base_caching import BaseCaching
-from typing import OrderedDicts
+
+
 class LIFOCache(BaseCaching):
     '''Inherit from BaseCaching and implement the following methods:'''
 
