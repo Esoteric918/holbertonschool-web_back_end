@@ -4,7 +4,6 @@
 from base_caching import BaseCaching
 from typing import OrderedDict
 
-
 class LIFOCache(BaseCaching):
     '''Inherit from BaseCaching and implement the following methods:'''
 
@@ -28,5 +27,5 @@ class LIFOCache(BaseCaching):
 
     def get(self, key):
         ''' get item from cache '''
-        if key or key in self.cache_data:
+        if key or key not in self.cache_data:
             return self.cache_data.get(key)
