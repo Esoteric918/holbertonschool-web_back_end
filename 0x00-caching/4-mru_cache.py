@@ -3,6 +3,7 @@
 from collections import OrderedDict
 from base_caching import BaseCaching
 
+
 class MRUCache(BaseCaching):
     """Most Recently Used Caching"""
 
@@ -15,7 +16,7 @@ class MRUCache(BaseCaching):
         """Add item to cache"""
         if key and item:
             self.cache_data[key] = item
-            self.cache_data.move_to_end(key)
+            self.cache_data.move_to_end(key, last=False)
             if len(self.cache_data) > self.MAX_ITEMS:
                 key = self.cache_data.popitem(last=False)
                 print('DISCARD: {}'.format(key[0]))
