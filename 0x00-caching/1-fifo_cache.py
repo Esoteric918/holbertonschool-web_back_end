@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 ''' FIRST IN FIRST OUT cache system '''
-from typing import OrderedDict
 from base_caching import BaseCaching
+from typing import OrderedDict
 
 
 class FIFOCache(BaseCaching):
@@ -14,8 +14,7 @@ class FIFOCache(BaseCaching):
         ''' put item in cache '''
         if key and item:
             self.cache_data[key] = item
-
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            if len(self.cache_data) > self.MAX_ITEMS:
                 key, val = self.cache_data.popitem(last=False)
                 print('DISCARD:{}'.format(key))
 
