@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''LRU Cache system'''
+'''LRU Cache system '''
 
 from base_caching import BaseCaching
 from collections import OrderedDict
@@ -8,12 +8,12 @@ from collections import OrderedDict
 class LRUCache(BaseCaching):
 
     def __init__(self):
-        ''' initialize LRU cache '''
+        ''' initialize LRU cache system '''
         super().__init__()
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        '''add item to cache'''
+        '''add item to cache assign to the dictionary key'''
         if key and item:
             self.cache_data[key] = item
             self.cache_data.move_to_end(key)
