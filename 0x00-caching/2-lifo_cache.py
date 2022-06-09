@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 ''' 2-lifo_cache.py: LIFO Cache '''
+
 from base_caching import BaseCaching
 from typing import OrderedDict
+
 
 class LIFOCache(BaseCaching):
     '''Inherit from BaseCaching and implement the following methods:'''
@@ -13,7 +15,7 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         '''add item to cache'''
-        if key is None or item is None:
+        if key and item:
             self.cache_data[key] = item
 
             if key not in self.cache_list:
@@ -28,4 +30,3 @@ class LIFOCache(BaseCaching):
         ''' get item from cache '''
         if key or key in self.cache_data:
             return self.cache_data.get(key)
-
