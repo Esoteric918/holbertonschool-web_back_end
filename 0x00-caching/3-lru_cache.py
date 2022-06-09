@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-'''LRU Cache system '''
+'''LRU Cache system implementation'''
 
 from base_caching import BaseCaching
 from collections import OrderedDict
 
 
 class LRUCache(BaseCaching):
+    '''Inherit from BaseCaching and implement the following methods:'''
 
     def __init__(self):
         ''' initialize LRU cache system '''
