@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-'''LRU Cache'''
-
+'''LRU Cache system'''
 
 from base_caching import BaseCaching
 from collections import OrderedDict
