@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
-''' FIRST IN FIRST OUT cache system '''
+"""FIRST IN FIRST OUT CACHE"""
+from collections import OrderedDict
 from base_caching import BaseCaching
-from typing import OrderedDict
 
 
 class FIFOCache(BaseCaching):
-    ''' FIFO cache implementation '''
+    ''' inherited methods '''
+
     def __init__(self):
-        super().__init__()
+        ''' init method '''
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        ''' put item in cache '''
-        if key and item:
+        ''' put method item in cache '''
+        if (key and item):
             self.cache_data[key] = item
             if len(self.cache_data) > self.MAX_ITEMS:
-                key, val = self.cache_data.popitem(last=False)
-                print('DISCARD:{}'.format(key))
+                k, v = self.cache_data.popitem(last=False)
+                print('DISCARD: {}'.format(k))
 
     def get(self, key):
-        ''' get item from cache '''
-        if key or key in self.cache_data:
+        ''' Get method to return value at key '''
+        if key or key not in self.cache_data:
             return self.cache_data.get(key)
