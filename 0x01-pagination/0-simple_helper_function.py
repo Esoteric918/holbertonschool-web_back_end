@@ -5,7 +5,7 @@ from typing import Union, Tuple
 
 
 def index_range(page: int, page_size: int) -> Union[Tuple[int, int], None]:
-    '''return ta tuple of the size of start and end index'''
+    '''return a tuple of the size of start and end index'''
     if page == 0 and page_size:
         start = 0
         end = page_size

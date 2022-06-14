@@ -8,6 +8,7 @@ from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -41,9 +42,8 @@ class Server:
             'page_size': page_size,
             'page': page if page > 0 else 1,
             'data':  self.get_page(page, page_size),
-            'next_page': (page + 1) if page < math.ceil(len(self.dataset()) / page_size) else None,
+            'next_page': (page + 1) if page
+            < math.ceil(len(self.dataset()) / page_size) else None,
             'prev_page': (page - 1) if page > 1 else None,
             'total_pages':  math.ceil(len(self.dataset()) / page_size),
-    }
-
-
+        }
