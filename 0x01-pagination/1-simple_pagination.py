@@ -5,7 +5,7 @@ from typing import Union, Tuple
 import csv
 import math
 from typing import List
-
+index_range = __import__('0-simple_helper_function').index_range
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -35,15 +35,4 @@ class Server:
         return dataset[start:end]
 
 
-def index_range(page: int, page_size: int) -> Union[Tuple[int, int], None]:
-    '''return ta tuple of the size of start and end index'''
-    if page == 0 and page_size:
-        start = 0
-        end = page_size
-        return start, end
-    elif page and page_size:
-        start = (page - 1) * page_size
-        end = page * page_size
-        return start, end
-    else:
-        return None
+
