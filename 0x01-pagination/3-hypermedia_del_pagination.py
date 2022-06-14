@@ -42,10 +42,11 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
             '''returns a dictionary containing the following key-value pairs'''
             assert (type(index) is int and index < len(self.__indexed_dataset))
+            next = index + page_size
             data = self.dataset()[index: next]
             return {
                 'index': index,
                 'data' : data,
                 'page_size' : page_size,
-                'next_index' : index + page_size,
+                'next_index' : next,
             }
