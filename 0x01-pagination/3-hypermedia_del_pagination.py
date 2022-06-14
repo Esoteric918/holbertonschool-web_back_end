@@ -48,6 +48,6 @@ class Server:
             'index': index,
             'data': data,
             'page_size': page_size,
-            'next_index': next if next <= len(self.__indexed_dataset) else None,
-
+            'next_index': next if next <= len(self.__indexed_dataset)
+            else None,
             }
