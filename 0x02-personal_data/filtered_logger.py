@@ -6,6 +6,7 @@ import os
 import re
 import logging
 import mysql.connector
+from typing import List
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
@@ -27,11 +28,14 @@ class RedactingFormatter(logging.Formatter):
         msg = super().format(record)
         logList = (filter_datum(
             self.fields, self.REDACTION, msg, self.SEPARATOR))
-        return logList.replace(";", "; ")
-        NotImplementedError
+        return logList
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(
+    fields: list,
+    redaction: str,
+    message: str,
+    separator: str) -> str:
     '''
     fields: list of strings representing all fields to obfuscate
     redaction: string representing by what the field will be obfuscated
