@@ -2,10 +2,10 @@
 '''Write a function called filter_datum that
     returns the log message obfuscated:
 '''
-
+import os
 import re
 import logging
-
+import mysql.connector
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
@@ -58,3 +58,34 @@ def get_logger() -> logging.Logger:
     logger.addHandler(handler)
     return logger
 
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    ''' Return a connection to the database '''
+
+    host = os.environ['PERSONAL_DATA_DB_HOST']
+    user = os.environ['PERSONAL_DATA_DB_USERNAME']
+    password = os.environ['PERSONAL_DATA_DB_PASSWORD']
+    database = os.environ['PERSONAL_DATA_DB_NAME']
+
+    return (mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database))
+
+def main():
+    ''' get connection to the database and log the data '''
+
+    logger = get_logger()
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users")
+    for row in cursor:
+        # get item from the row
+        rowItems = row.items()
+        # get the key and value from the item
+        keyItems = ('; '.join(fr'?{rowItems[0]}=({rowItems[1]})' for rowItems in row.items()))
+        logger.info(keyItems)
+    db.close()
+
+if __name__ == '__main__':
+    main()
