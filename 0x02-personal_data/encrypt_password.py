@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 '''Write a function called hash_password'''
+
+from bcrypt import hashpw, gensalt
 import bcrypt
 
 
@@ -9,4 +11,5 @@ def hash_password(password: str) -> str:
         password: string representing the password to be hashed
     Return:
         string representing the hashed password'''
-    return bcrypt.hashpw(password, bcrypt.gensalt())
+    hashed = hashpw(password.encode(), gensalt())
+    return hashed
