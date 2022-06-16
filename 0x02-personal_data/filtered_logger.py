@@ -35,7 +35,9 @@ def filter_datum(
     fields: list,
     redaction: str,
     message: str,
-    separator: str) -> str:
+    separator: str
+        ) -> str:
+
     '''
     fields: list of strings representing all fields to obfuscate
     redaction: string representing by what the field will be obfuscated
