@@ -11,4 +11,4 @@ def hash_password(password: str) -> bytes:
     Return:
         string representing the hashed password'''
 
-    return hashpw(password.encode(), gensalt())
+    return hashpw(password.encode('uft-8'), gensalt())
