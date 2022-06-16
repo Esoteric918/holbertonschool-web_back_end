@@ -4,7 +4,7 @@
 from bcrypt import hashpw, gensalt
 
 
-def hash_password(password: str) -> str:
+def hash_password(password: str) -> bytes:
     '''
     Args:
         password: string representing the password to be hashed
