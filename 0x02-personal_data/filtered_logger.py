@@ -18,7 +18,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self, fields: list):
+    def __init__(self, fields: List[list]):
         ''' Initialize the formatter with the fields to redact'''
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
@@ -39,12 +39,14 @@ def filter_datum(
         ) -> str:
 
     '''
-    fields: list of strings representing all fields to obfuscate
-    redaction: string representing by what the field will be obfuscated
-    message: string representing the log line
-    separator: string representing by which character is separating all
-    fields in the log line (message)
-    return: string representing the log line obfuscated
+    Args:
+        fields: list of strings representing all fields to obfuscate
+        redaction: string representing by what the field will be obfuscated
+        message: string representing the log line
+        separator: string representing by which character is separating all
+
+    Return:
+        string representing the log line obfuscated
     '''
     for fields in fields:
         regex = fr"(?<={fields}=).*?(?={separator})"
