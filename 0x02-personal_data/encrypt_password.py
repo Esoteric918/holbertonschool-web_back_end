@@ -2,7 +2,6 @@
 '''Write a function called hash_password'''
 
 from bcrypt import hashpw, gensalt
-import bcrypt
 
 
 def hash_password(password: str) -> str:
