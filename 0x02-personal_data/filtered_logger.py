@@ -22,13 +22,14 @@ class RedactingFormatter(logging.Formatter):
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
-
     def format(self, record: logging.LogRecord) -> str:
         ''' Format the log message '''
         msg = super().format(record)
-        logList =  (filter_datum(self.fields, self.REDACTION, msg, self.SEPARATOR))
+        logList = (filter_datum(
+            self.fields, self.REDACTION, msg, self.SEPARATOR))
         return logList.replace(";", "; ")
         NotImplementedError
+
 
 def filter_datum(fields, redaction, message, separator):
     '''
@@ -44,6 +45,7 @@ def filter_datum(fields, redaction, message, separator):
         message = re.sub(r'{}'.format(regex), redaction, message)
     return message
 
+
 def get_logger() -> logging.Logger:
     '''
     return: logger object
@@ -57,6 +59,7 @@ def get_logger() -> logging.Logger:
     logger.propagate = False
     logger.addHandler(handler)
     return logger
+
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
     ''' Return a connection to the database '''
@@ -72,6 +75,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         password=password,
         database=database))
 
+
 def main():
     ''' get connection to the database and log the data '''
 
@@ -83,9 +87,11 @@ def main():
         # get item from the row
         rowItems = row.items()
         # get the key and value from the item
-        keyItems = ('; '.join(fr'?{rowItems[0]}=({rowItems[1]})' for rowItems in row.items()))
+        keyItems = ('; '.join(fr'?{rowItems[0]}=({rowItems[1]})'
+                    for rowItems in row.items()))
         logger.info(keyItems)
     db.close()
+
 
 if __name__ == '__main__':
     main()
