@@ -3,7 +3,6 @@
 
 
 from base64 import b64decode
-from collections import UserDict, UserList
 from re import search
 from typing import Tuple, TypeVar
 from api.v1.auth.auth import Auth
@@ -50,10 +49,8 @@ class BasicAuth(Auth):
             return None
         if user_pwd is None or type(user_pwd) is not str:
             return None
-        try:
-            userlist = User.search({'email': user_email})
-            for user in userlist:
-                if user.is_valid_password(user_pwd):
-                    return user
-        except Exception:
-            return None
+        userlist = User.search({'email': user_email})
+        for user in userlist:
+            if user.is_valid_password(user_pwd):
+                return user
+        return None
