@@ -7,9 +7,6 @@ from api.v1.auth.auth import Auth
 class BasicAuth(Auth):
     '''Create a class BasicAuth that inherits from Auth'''
 
-    def __init__(self):
-        '''Initialize the class'''
-        super().__init__()
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         '''Extract the base64 encoded authorization header'''
@@ -17,4 +14,14 @@ class BasicAuth(Auth):
             if type(authorization_header) is str:
                 if authorization_header.startswith("Basic "):
                     return authorization_header[6:]
+        return None
+
+
+    def decode_base64_authorization_header(self,
+                                           base64_authorization_header:
+                                           str) -> str:
+        '''Decode the base64 encoded authorization header'''
+        if base64_authorization_header:
+            if type(base64_authorization_header) is str:
+                return base64_authorization_header.decode("utf-8")
         return None
