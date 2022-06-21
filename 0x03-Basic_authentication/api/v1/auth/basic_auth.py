@@ -56,7 +56,6 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''Return the current user
-            in the class BasicAuth that overloads Auth and retrieves the User instance for a request:
 
             You must use authorization_header
             You must use extract_base64_authorization_header
