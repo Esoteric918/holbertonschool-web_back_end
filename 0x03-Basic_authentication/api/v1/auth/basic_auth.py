@@ -64,7 +64,7 @@ class BasicAuth(Auth):
             You must use extract_user_credentials
             You must use user_object_from_credentials
         '''
-        auth = request.headers.get('Authorization')
+        auth = self.authorization_header(request)
         head = self.extract_base64_authorization_header(auth)
         decoded = self.decode_base64_authorization_header(head)
         user = self.extract_user_credentials(decoded)
