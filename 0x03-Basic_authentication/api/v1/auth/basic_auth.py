@@ -3,7 +3,6 @@
 
 
 from base64 import b64decode
-from re import search
 from typing import Tuple, TypeVar
 from api.v1.auth.auth import Auth
 from models.user import User
