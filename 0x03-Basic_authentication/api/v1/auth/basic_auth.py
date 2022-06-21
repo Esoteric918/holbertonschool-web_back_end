@@ -45,9 +45,11 @@ class BasicAuth(Auth):
                                      user_pwd: str) -> TypeVar('User'):
         '''Create a user object from the credentials'''
         if user_email and user_pwd:
-            if type(user_email) is str and type(user_pwd) is str:
-                res = User.search({'email': user_email})
+            try:
+                if type(user_email) is str and type(user_pwd) is str:
+                    res = User.search({'email': user_email})
                 for user in res:
                     if res[0].is_valid_password(user_pwd):
                         return res[0]
-        return None
+            except Exception:
+                return None
