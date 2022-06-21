@@ -14,15 +14,15 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 auth = None
 auth_type = getenv("AUTH_TYPE")
-if auth_type == 'auth':
-    from api.v1.auth.auth import Auth
-    # create an instance of Auth and assign it to the variable auth
-    auth = Auth()
-
 if auth_type == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     # create an instance of BasicAuth and assign it to the variable auth
     auth = BasicAuth()
+else:
+    auth_type == 'auth'
+    from api.v1.auth.auth import Auth
+    # create an instance of Auth and assign it to the variable auth
+    auth = Auth()
 
 
 @app.errorhandler(404)
