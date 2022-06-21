@@ -42,7 +42,9 @@ class BasicAuth(Auth):
                     return decoded_base64_authorization_header.split(":")
         return None, None
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> TypeVar('User'):
+    def user_object_from_credentials(self,
+                                     user_email: str,
+                                     user_pwd: str) -> TypeVar('User'):
         '''Create a user object from the credentials'''
         if user_email and user_pwd:
             if type(user_email) is str and type(user_pwd) is str:
