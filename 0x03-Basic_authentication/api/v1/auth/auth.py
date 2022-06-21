@@ -13,7 +13,7 @@ class Auth():
                 path: path to check
                 excluded_paths: list of paths to exclude
         '''
-        if path is None and excluded_paths is None:
+        if path is None or excluded_paths is None:
             return True
         # loop through excluded paths and check if path is in list
         if path in excluded_paths or f'{path}/' in excluded_paths:
