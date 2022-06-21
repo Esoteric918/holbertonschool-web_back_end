@@ -49,7 +49,7 @@ class BasicAuth(Auth):
         if user_email and user_pwd:
             if type(user_email) is str and type(user_pwd) is str:
                 res = User.search({'email': user_email})
-                if res:
-                    if res[0].is_valid_password(user_pwd):
-                        return res[0]
+                for user in res:
+                    if user.is_valid_password(user_pwd):
+                        return user
         return None
