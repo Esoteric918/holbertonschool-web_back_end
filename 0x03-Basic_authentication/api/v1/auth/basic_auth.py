@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 '''Create a class BasicAuth that inherits from Auth'''
 
+
 from base64 import b64decode
+from typing import Tuple
 from api.v1.auth.auth import Auth
 
 
@@ -26,6 +28,12 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-    # def extract_user_credentials(self,
-    #                              decoded_base64_authorization_header: str)
-    #                               -> (str, str):
+    def extract_user_credentials(self,
+                                 decoded_base64_authorization_header: str
+                                 ) -> Tuple[str, str]:
+        '''Extract the user credentials'''
+        if decoded_base64_authorization_header:
+            if type(decoded_base64_authorization_header) is str:
+                if decoded_base64_authorization_header.find(":") > 0:
+                    return decoded_base64_authorization_header.split(":")
+        return None, None
