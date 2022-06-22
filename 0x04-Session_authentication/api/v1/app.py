@@ -56,13 +56,12 @@ def before_request():
                  "/api/v1/forbidden/"]
 
     if auth and auth.require_auth(request.path, auth_list):
-        # if the request is not authorized, return a 401 response
         if auth.authorization_header(request) is None:
             abort(401)
-        # if the request is not authorized user abort with a 403 response
         if auth.current_user(request) is None:
             abort(403)
 
+        request.current_user = auth.current_user(request)
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
