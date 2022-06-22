@@ -30,4 +30,33 @@
 
     ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
 
+### In a second terminal:
 
+    ``` curl "http://0.0.0.0:5000/api/v1/status"
+        {"status": "OK"}
+
+        curl "http://0.0.0.0:5000/api/v1/users"
+        {"status": "OK"}
+
+        curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Basic Ym9iQGhidG4uaW86SDBsYmVydG9uU2Nob29sOTgh"
+        [
+            {
+                "created_at": "2017-09-25 01:55:17",
+                "email": "bob@hbtn.io",
+                "first_name": null,
+                "id": "9375973a-68c7-46aa-b135-29f79e837495",
+                "last_name": null,
+                "updated_at": "2017-09-25 01:55:17"
+            }
+        ]
+
+        curl "http://0.0.0.0:5000/api/v1/users/me" -H "Authorization: Basic Ym9iQGhidG4uaW86SDBsYmVydG9uU2Nob29sOTgh"
+        {
+          "created_at": "2017-09-25 01:55:17",
+          "email": "bob@hbtn.io",
+          "first_name": null,
+          "id": "9375973a-68c7-46aa-b135-29f79e837495",
+          "last_name": null,
+          "updated_at": "2017-09-25 01:55:17"
+        }
+    ```
