@@ -83,6 +83,10 @@ Otherwise, keep the previous mechanism.
         {
         "status": "OK"
         }
+         curl "http://0.0.0.0:5000/api/v1/users"
+        {
+        "error": "Unauthorized"
+        }
         curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
         {
         "error": "Forbidden"
