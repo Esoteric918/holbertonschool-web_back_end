@@ -15,20 +15,20 @@
 - How to send Cookies
 - How to parse Cookies
 
-## Task
+## Tasks
 
-0.
-   - Copy 0x03-Basic_authentication project in this new folder.
-        - Update @app.before_request in api/v1/app.py:
-            - Assign the result of auth.current_user(request) to request.current_user
-        - Update method for the route GET /api/v1/users/<user_id> in api/v1/views/users.py:
-            - If <user_id> is equal to me and request.current_user is None: abort(404)
-            - If <user_id> is equal to me and request.current_user is not None: return the authenticated User in a JSON response (like a normal case of GET /api/v1/users/<user_id> where <user_id> is a valid User ID)
-            - Otherwise, keep the same behavior
+0. Et moi et moi et moi!
+- Copy 0x03-Basic_authentication project in this new folder.
+    - Update @app.before_request in api/v1/app.py:
+        - Assign the result of auth.current_user(request) to request.current_user
+    - Update method for the route GET /api/v1/users/<user_id> in api/v1/views/users.py:
+        - If <user_id> is equal to me and request.current_user is None: abort(404)
+        - If <user_id> is equal to me and request.current_user is not None: return the authenticated User in a JSON response (like a normal case of GET /api/v1/users/<user_id> where <user_id> is a valid User ID)
+        - Otherwise, keep the same behavior
 
-    - Test with
-
-    ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
+- Test with
+    in the first terminal
+     ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
 
 ##### In a second terminal:
 
