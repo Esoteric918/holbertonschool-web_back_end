@@ -105,12 +105,12 @@ Otherwise, keep the previous mechanism.
             - Return the Session ID
         - The same user_id can have multiple Session ID - indeed, the user_id is the value in the dictionary user_id_by_session_id
 
-Test with
+- Test with
     in treminal
     ```
         API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth ./main_1.py
     ```
-Results:
+- Results:
     ```
         <class 'dict'>: {}
         None => None: {}
