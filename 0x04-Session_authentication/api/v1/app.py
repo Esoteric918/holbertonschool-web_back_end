@@ -5,7 +5,7 @@ Route module for the API
 from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
-from flask_cors import (CORS, cross_origin)
+from flask_cors import (CORS)
 
 
 app = Flask(__name__)
@@ -18,6 +18,10 @@ if auth_type == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     # create an instance of BasicAuth and assign it to the variable auth
     auth = BasicAuth()
+elif auth_type == "session_auth":
+    from api.v1.auth.session_auth import SessionAuth
+    # create an instance of SessionAuth and assign it to the variable auth
+    auth = SessionAuth()
 else:
     auth_type == 'auth'
     from api.v1.auth.auth import Auth
