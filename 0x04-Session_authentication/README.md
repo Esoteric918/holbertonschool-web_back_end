@@ -30,7 +30,7 @@
     in the first terminal
      ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
 
-##### In a second terminal:
+In a second terminal:
 
     ``` curl "http://0.0.0.0:5000/api/v1/status"
         {"status": "OK"}
@@ -92,3 +92,62 @@ Otherwise, keep the previous mechanism.
         "error": "Forbidden"
         }
     ```
+
+2. Create a session
+- Update SessionAuth class:
+    - class attribute user_id_by_session_id initialized by an empty dictionary
+    - new method def create_session(self, user_id: str = None) -> str:
+        - Return None if user_id is None
+        - Return None if user_id is not a string
+        Otherwise:
+            - Generate a Session ID using uuid module and uuid4() like id in Base
+            - Use this Session ID as key of the dictionary user_id_by_session_id - the value for this key must be user_id
+            - Return the Session ID
+        - The same user_id can have multiple Session ID - indeed, the user_id is the value in the dictionary user_id_by_session_id
+
+Test with
+    in treminal
+    ```
+        API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth ./main_1.py
+    ```
+Results:
+    ```
+        <class 'dict'>: {}
+        None => None: {}
+        89 => None: {}
+        abcde => 61997a1b-3f8a-4b0f-87f6-19d5cafee63f: {'61997a1b-3f8a-4b0f-87f6-19d5cafee63f': 'abcde'}
+        fghij => 69e45c25-ec89-4563-86ab-bc192dcc3b4f: {'61997a1b-3f8a-4b0f-87f6-19d5cafee63f': 'abcde', '69e45c25-ec89-4563-86ab-bc192dcc3b4f': 'fghij'}
+        abcde => 02079cb4-6847-48aa-924e-0514d82a43f4: {'61997a1b-3f8a-4b0f-87f6-19d5cafee63f': 'abcde', '02079cb4-6847-48aa-924e-0514d82a43f4': 'abcde', '69e45c25-ec89-4563-86ab-bc192dcc3b4f': 'fghij'}
+    ```
+
+3.User ID for Session ID
+Update SessionAuth class:
+
+- Create an instance method def user_id_for_session_id(self, session_id: str = None) -> str: that returns a User ID based on a Session ID:
+
+    - Return None if session_id is None
+    - Return None if session_id is not a string
+    - Return the value (the User ID) for the key session_id in the dictionary user_id_by_session_id.
+    - You must use .get() built-in for accessing in a dictionary a value based on key
+
+Test With
+    In treminal
+        ```
+             API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth ./main_2.py
+        ```
+    Results:
+    ```abcde => 8647f981-f503-4638-af23-7bb4a9e4b53f: {'8647f981-f503-4638-af23-7bb4a9e4b53f': 'abcde'}
+    fghij => a159ee3f-214e-4e91-9546-ca3ce873e975: {'a159ee3f-214e-4e91-9546-ca3ce873e975': 'fghij', '8647f981-f503-4638-af23-7bb4a9e4b53f': 'abcde'}
+    ---
+    None => None
+    89 => None
+    doesntexist => None
+    ---
+    8647f981-f503-4638-af23-7bb4a9e4b53f => abcde
+    a159ee3f-214e-4e91-9546-ca3ce873e975 => fghij
+    ---
+    abcde => 5d2930ba-f6d6-4a23-83d2-4f0abc8b8eee: {'a159ee3f-214e-4e91-9546-ca3ce873e975': 'fghij', '8647f981-f503-4638-af23-7bb4a9e4b53f': 'abcde', '5d2930ba-f6d6-4a23-83d2-4f0abc8b8eee': 'abcde'}
+    5d2930ba-f6d6-4a23-83d2-4f0abc8b8eee => abcde
+    8647f981-f503-4638-af23-7bb4a9e4b53f => abcde
+    ```
+
