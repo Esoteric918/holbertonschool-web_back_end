@@ -26,7 +26,8 @@
             - If <user_id> is equal to me and request.current_user is not None: return the authenticated User in a JSON response (like a normal case of GET /api/v1/users/<user_id> where <user_id> is a valid User ID)
             - Otherwise, keep the same behavior
 
-       - Test with
-            -
+    - Test with
+
+    ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
 
 
