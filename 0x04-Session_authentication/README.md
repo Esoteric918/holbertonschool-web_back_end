@@ -73,7 +73,8 @@ Otherwise, keep the previous mechanism.
     ``` API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth python3 -m api.v1.app ```
 
     in a second terminal:
-    ``` curl "http://0.0.0.0:5000/api/v1/status"
+    ```
+        curl "http://0.0.0.0:5000/api/v1/status"
         {
         "status": "OK"
         }
@@ -85,4 +86,5 @@ Otherwise, keep the previous mechanism.
         curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
         {
         "error": "Forbidden"
-        }```
+        }
+    ```
