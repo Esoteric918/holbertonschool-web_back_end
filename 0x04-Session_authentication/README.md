@@ -63,8 +63,8 @@
 
 1. Empty session
 - Create class SessionAuth to inherit Auth in api.v1.auth.session_auth
-    - Update api/v1/app.py for instance of AUTH_TYPE is = to session_auth
-        - import SessionAuth from api.v1.auth.session_auth
+    - Update [api/v1/app.py](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x04-Session_authentication/api/v1/app.py) for instance of AUTH_TYPE is = to session_auth
+        - import SessionAuth from [api.v1.auth.session_auth](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x04-Session_authentication/api/v1/auth/session_auth.py)
         - create an instance of SessionAuth and assign it to the variable auth
 Otherwise, keep the previous mechanism.
 
