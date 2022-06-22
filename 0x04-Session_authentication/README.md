@@ -130,12 +130,12 @@ Update SessionAuth class:
     - Return the value (the User ID) for the key session_id in the dictionary user_id_by_session_id.
     - You must use .get() built-in for accessing in a dictionary a value based on key
 
-Test With
+- Test With
     In treminal
         ```
              API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth ./main_2.py
         ```
-    Results:
+- Results:
     ```abcde => 8647f981-f503-4638-af23-7bb4a9e4b53f: {'8647f981-f503-4638-af23-7bb4a9e4b53f': 'abcde'}
     fghij => a159ee3f-214e-4e91-9546-ca3ce873e975: {'a159ee3f-214e-4e91-9546-ca3ce873e975': 'fghij', '8647f981-f503-4638-af23-7bb4a9e4b53f': 'abcde'}
     ---
