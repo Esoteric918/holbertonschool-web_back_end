@@ -30,7 +30,7 @@
 
     ```API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app```
 
-### In a second terminal:
+##### In a second terminal:
 
     ``` curl "http://0.0.0.0:5000/api/v1/status"
         {"status": "OK"}
@@ -60,3 +60,29 @@
           "updated_at": "2017-09-25 01:55:17"
         }
     ```
+
+1. Empty session
+- Create class SessionAuth to inherit Auth in api.v1.auth.session_auth
+    - Update api/v1/app.py for instance of AUTH_TYPE is = to session_auth
+        - import SessionAuth from api.v1.auth.session_auth
+        - create an instance of SessionAuth and assign it to the variable auth
+Otherwise, keep the previous mechanism.
+
+- Test With
+    in the first terminal:
+    ``` API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_auth python3 -m api.v1.app ```
+
+    in a second terminal:
+    ``` curl "http://0.0.0.0:5000/api/v1/status"
+        {
+        "status": "OK"
+        }
+
+        curl "http://0.0.0.0:5000/api/v1/status/"
+        {
+        "status": "OK"
+        }
+        curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
+        {
+        "error": "Forbidden"
+        }
