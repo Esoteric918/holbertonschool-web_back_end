@@ -19,9 +19,9 @@
 
 0. Et moi et moi et moi!
 - Copy 0x03-Basic_authentication project in this new folder.
-    - Update @app.before_request in api/v1/app.py:
+    - Update @app.before_request in [api/v1/app.py](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x04-Session_authentication/api/v1/app.py):
         - Assign the result of auth.current_user(request) to request.current_user
-    - Update method for the route GET /api/v1/users/<user_id> in api/v1/views/users.py:
+    - Update method for the route GET /api/v1/users/<user_id> in [api/v1/views/users.py](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x04-Session_authentication/api/v1/views/users.py):
         - If <user_id> is equal to me and request.current_user is None: abort(404)
         - If <user_id> is equal to me and request.current_user is not None: return the authenticated User in a JSON response (like a normal case of GET /api/v1/users/<user_id> where <user_id> is a valid User ID)
         - Otherwise, keep the same behavior
