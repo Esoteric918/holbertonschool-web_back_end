@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 ''' Class to handle API authentication'''
+from os import getenv
 from typing import TypeVar, List, Dict, Any
-from flask import request
+
 
 
 class Auth():
@@ -34,3 +35,11 @@ class Auth():
             auth_header = self.authorization_header(request)
         else:
             return None
+
+    def session_cookie(self, request=None):
+        """ Return the session cookie
+        """
+        if request is None:
+            return None
+        cookie = getenv('SESSION_NAME')
+        return request.cookies.get(cookie)
