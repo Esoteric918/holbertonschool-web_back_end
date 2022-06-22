@@ -85,4 +85,4 @@ Otherwise, keep the previous mechanism.
         curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
         {
         "error": "Forbidden"
-        }
+        }```
