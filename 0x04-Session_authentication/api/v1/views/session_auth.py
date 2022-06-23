@@ -5,7 +5,7 @@ from api.v1.views import app_views
 from api.v1.auth.session_auth import SessionAuth
 from flask import jsonify, request
 from models.user import User
-from os import getenv
+from os import abort, getenv
 
 
 @app_views.route('/auth_session/login',
@@ -38,15 +38,9 @@ def login():
                  '/auth_session/logout',
                  methods=['DELETE'],
                  strict_slashes=False)
-def destroy_session(self, request=None):
-    '''Destroy session'''
+def logout():
     from api.v1.app import auth
-    if request is None:
-        return False
-    if request is not self.session_cookie(request):
-        return False
-    if not self.user_id_for_session_id(request):
-        return False
     if auth.destroy_session(request):
         return jsonify({}), 200
-    return True
+    else:
+        abort (404)
