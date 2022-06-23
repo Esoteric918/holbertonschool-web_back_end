@@ -34,8 +34,8 @@ def login():
     res.set_cookie(getenv('SESSION_NAME'), sess_id)
     return res
 
-@app_views.route(
-                 '/auth_session/logout',
+
+@app_views.route('/auth_session/logout',
                  methods=['DELETE'],
                  strict_slashes=False)
 def logout():
@@ -43,4 +43,4 @@ def logout():
     if auth.destroy_session(request):
         return jsonify({}), 200
     else:
-        abort (404)
+        abort(404)
