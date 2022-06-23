@@ -22,12 +22,10 @@ elif auth_type == "session_auth":
     from api.v1.auth.session_auth import SessionAuth
     # create an instance of SessionAuth and assign it to the variable auth
     auth = SessionAuth()
-else:
-    auth_type == 'auth'
+elif auth_type == 'auth':
     from api.v1.auth.auth import Auth
     # create an instance of Auth and assign it to the variable auth
     auth = Auth()
-
 
 @app.errorhandler(404)
 def not_found(error) -> str:
@@ -64,7 +62,9 @@ def before_request():
         if auth.authorization_header(request) is None\
                 and auth.session_cookie(request) is None:
             abort(401)
+
         if auth.current_user(request) is None:
+            print("current_user is None")
             abort(403)
         request.current_user = auth.current_user(request)
 
