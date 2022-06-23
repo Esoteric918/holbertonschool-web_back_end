@@ -4,7 +4,6 @@ from os import getenv
 from typing import TypeVar, List, Dict, Any
 
 
-
 class Auth():
     '''template for all authentication systems'''
 
