@@ -39,6 +39,7 @@ def login():
                  methods=['DELETE'],
                  strict_slashes=False)
 def logout():
+    '''Logout user'''
     from api.v1.app import auth
     if auth.destroy_session(request):
         return (jsonify({}), 200)
