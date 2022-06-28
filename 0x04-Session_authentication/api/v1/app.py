@@ -27,6 +27,7 @@ elif auth_type == 'auth':
     # create an instance of Auth and assign it to the variable auth
     auth = Auth()
 
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
