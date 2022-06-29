@@ -35,7 +35,7 @@ def registerUser():
         return jsonify({'message': "email already registered"}), 400
 
 
-@app.route('/session', methods=['POST'], strict_slashes=False)
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login():
     """Route for loggin in a user"""
     email = request.form.get('email')
@@ -48,6 +48,7 @@ def login():
 
     session_id = AUTH.create_session(email=email)
     response = jsonify({'email': email, 'message': 'logged in'})
+    print(response,'response')
     return response.set_cookie('session_id', session_id)
 
 
