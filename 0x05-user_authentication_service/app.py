@@ -52,5 +52,17 @@ def login():
     return response
 
 
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """Route for logging out a user"""
+    session_id = request.cookies.get('session_id')
+    if not session_id:
+        abort(401)
+
+    AUTH.destroy_session(session_id)
+    response = jsonify({'message': 'logged out'})
+    response.set_cookie('session_id', '', expires=0)
+    return response
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
