@@ -48,8 +48,8 @@ def login():
 
     session_id = AUTH.create_session(email=email)
     response = jsonify({'email': email, 'message': 'logged in'})
-    print(response,'response')
-    return response.set_cookie('session_id', session_id)
+    response.set_cookie('session_id', session_id)
+    return response
 
 
 if __name__ == "__main__":
