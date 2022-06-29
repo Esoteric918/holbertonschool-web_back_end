@@ -38,6 +38,7 @@ class Auth:
         except Exception:
             return False
 
+
 def _hash_password(password: str) -> bytes:
     """Hash a password
 
@@ -47,6 +48,7 @@ def _hash_password(password: str) -> bytes:
     pwd = password.encode()
     return hashpw(pwd, gensalt())
 
-def _generate_uuid(self) -> str:
-        '''Generate a new UUID'''
-        return str(uuid.uuid4())
+
+def _generate_uuid() -> str:
+    '''Generate a new UUID'''
+    return str(uuid.uuid4())
