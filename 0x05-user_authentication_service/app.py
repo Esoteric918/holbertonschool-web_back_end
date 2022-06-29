@@ -37,16 +37,17 @@ def registerUser():
 
 @app.route('/session', methods=['POST'], strict_slashes=False)
 def login():
+    """Route for loggin in a user"""
     email = request.form.get('email')
-    password = request.form.get('password')
+    pwd = request.form.get('password')
 
-    if AUTH.valid_login(email=email, password=password):
-        session_id = AUTH.create_session(email)
-        res = jsonify({"email": email, "message": "logged in"})
-        res.set_cookie('session_id', session_id)
-        return res
-    else:
+    if not (AUTH.valid_login(email=email, password=pwd)) or not email or not pwd:
         abort(401)
+
+    session_id = AUTH.create_session(email=email)
+    response = jsonify({'email': email, 'message': 'logged in'})
+    response.set_cookie('session_id', session_id)
+    return response
 
 
 if __name__ == "__main__":
