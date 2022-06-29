@@ -2,7 +2,7 @@
 ''' init flask app '''
 
 import email
-from flask import Flask, abort, jsonify, request
+from flask import Flask, abort, jsonify, redirect, request
 from auth import Auth
 
 
@@ -56,13 +56,11 @@ def login():
 def logout():
     """Route for logging out a user"""
     session_id = request.cookies.get('session_id')
-    if not session_id:
-        abort(401)
+    if not session_id or not AUTH.get_user_from_session_id(session_id):
+        abort(403)
 
     AUTH.destroy_session(session_id)
-    response = jsonify({'message': 'logged out'})
-    response.set_cookie('session_id', '', expires=0)
-    return response
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
