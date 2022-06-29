@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 ''' init flask app '''
 
-from flask import Flask, jsonify, request, abort, make_response
+from flask import Flask, jsonify, request
 from auth import Auth
-from user import User
+
 
 AUTH = Auth()
 app = Flask(__name__)
@@ -29,6 +29,7 @@ def registerUser():
     try:
         AUTH.register_user(email, password)
         return jsonify({"email": email, "message": "user created"})
+
     except ValueError:
         return jsonify({'message': "email already registered"}), 400
 
