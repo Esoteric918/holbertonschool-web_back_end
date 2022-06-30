@@ -67,12 +67,12 @@ def logout():
 def profile():
     """Route for getting the profile of a user"""
     session_id = request.cookies.get('session_id')
-    userEmail = AUTH.get_user_from_session_id(session_id)
+    user = AUTH.get_user_from_session_id(session_id)
 
-    if not userEmail and not session_id:
+    if not user and not session_id:
         abort(403)
     else:
-        return jsonify({"email": userEmail.email}), 200
+        return jsonify({"email": user.email}), 200
 
 
 if __name__ == "__main__":
