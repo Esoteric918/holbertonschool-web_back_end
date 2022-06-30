@@ -81,10 +81,11 @@ def reset_pwd():
     try:
         email = request.form.get('email')
         token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": email, "reset_token": token})
+        return jsonify({'email': email, 'reset_token': token}), 200
 
     except Exception:
         abort(403)
+
 
 
 if __name__ == "__main__":
