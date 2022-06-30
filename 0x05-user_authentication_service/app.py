@@ -85,5 +85,6 @@ def get_reset_password_token():
 
     return jsonify({"email": "<user email>", "reset_token": token}), 200
 
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
