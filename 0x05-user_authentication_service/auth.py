@@ -72,7 +72,7 @@ class Auth:
             token = _generate_uuid()
             self._db.update_user(email.id, reset_token=token)
             return token
-        except Exception:
+        except ValueError:
             return ValueError
 
 
