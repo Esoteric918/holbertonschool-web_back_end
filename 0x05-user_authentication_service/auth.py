@@ -3,6 +3,7 @@
 
 from lib2to3.pgen2 import token
 from bcrypt import checkpw, gensalt, hashpw
+from requests import request
 from sqlalchemy.orm.exc import NoResultFound
 from db import DB
 from user import User
@@ -72,6 +73,15 @@ class Auth:
             token = _generate_uuid()
             self._db.update_user(email.id, reset_token=token)
             return token
+        except Exception:
+            raise ValueError
+
+    def update_password(self, token: str, password: str) -> None:
+        '''update a password'''
+        try:
+            user = self._db.find_user_by(reset_token=token)
+            pwd = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=pwd, reset_token=None)
         except Exception:
             raise ValueError
 
