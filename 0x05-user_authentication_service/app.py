@@ -91,10 +91,11 @@ def reset_pw():
 def update_pw():
     """Route for updating a password"""
     try:
+        email = request.form.get('email')
         token = request.form.get('reset_token')
         password = request.form.get('new_password')
         AUTH.update_password(token, password)
-        return jsonify({"email": 'email', "message": 'Password updated'}), 200
+        return jsonify({"email": email, "message": 'Password updated'}), 200
 
     except Exception:
         abort(403)
