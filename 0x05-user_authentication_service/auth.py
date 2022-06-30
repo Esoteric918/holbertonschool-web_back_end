@@ -73,7 +73,7 @@ class Auth:
             self._db.update_user(email.id, reset_token=token)
             return token
         except ValueError:
-            return ValueError
+            raise ValueError
 
 
 def _hash_password(password: str) -> bytes:
