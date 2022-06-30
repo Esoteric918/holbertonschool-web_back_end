@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 
+from lib2to3.pgen2 import token
 from bcrypt import checkpw, gensalt, hashpw
 from sqlalchemy.orm.exc import NoResultFound
 from db import DB
@@ -61,6 +62,15 @@ class Auth:
         try:
             user = self._db.find_user_by(id=user_id)
             self._db.update_user(user.id, session_id=None)
+        except Exception:
+            return None
+
+    def get_reset_password_token(self, email: str) -> str:
+        '''get a reset password token'''
+        try:
+            email = self._db.find_user_by(email=email)
+            token = _generate_uuid()
+            self._db.update_user(email.id, reset_token=token)
         except Exception:
             return None
 
