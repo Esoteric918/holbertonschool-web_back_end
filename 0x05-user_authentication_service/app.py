@@ -42,8 +42,8 @@ def login():
     pwd = request.form.get('password')
 
     if not (AUTH.valid_login(
-                             email=email,
-                             password=pwd)) or not email or not pwd:
+            email=email,
+            password=pwd)) or not email or not pwd:
         abort(401)
 
     session_id = AUTH.create_session(email=email)
@@ -70,9 +70,9 @@ def profile():
     userEmail = AUTH.get_user_from_session_id(session_id)
 
     if not userEmail and not session_id:
-         abort(403)
+        abort(403)
     else:
-       return jsonify({"email": email}), 200
+        return jsonify({"email": email}), 200
 
 
 if __name__ == "__main__":
