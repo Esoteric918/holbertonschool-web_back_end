@@ -75,17 +75,24 @@ def profile():
         abort(403)
 
 
-@app.route('/reset-password', methods=['POST'], strict_slashes=False)
-def reset_pwd():
-    """Route for getting a reset password token"""
+@app.route('/reset_password', methods=['POST'], strict_slashes=False)
+def reset_pw():
+    ''' generate reset_password token for user
+    JSON body:
+        - email
+    Return:
+        - JSON response with the user's email and reset_token
+        - 403 if the user doesn't exist
+    '''
     try:
-        email = request.form.get('email')
-        token = AUTH.get_reset_password_token(email)
-        return jsonify({'email': email, 'reset_token': token}), 200
-
+        return jsonify({
+            "email": request.form['email'],
+            "reset_token": AUTH.get_reset_password_token(
+                request.form['email']
+            )
+        })
     except Exception:
         abort(403)
-
 
 
 if __name__ == "__main__":
