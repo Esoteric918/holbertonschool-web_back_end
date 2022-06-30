@@ -77,23 +77,14 @@ def profile():
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
 def reset_pw():
-    ''' generate reset_password token for user
-    JSON body:
-        - email
-    Return:
-        - JSON response with the user's email and reset_token
-        - 403 if the user doesn't exist
-    '''
+    """Route for getting a reset password token"""
     try:
-        return jsonify({
-            "email": request.form['email'],
-            "reset_token": AUTH.get_reset_password_token(
-                request.form['email']
-            )
-        })
+        email = request.form.get('email')
+        token = AUTH.get_reset_password_token(email)
+        return jsonify({'email': email, 'reset_token': token}), 200
+
     except Exception:
         abort(403)
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
