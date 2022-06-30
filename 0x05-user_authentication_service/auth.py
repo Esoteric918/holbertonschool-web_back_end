@@ -71,8 +71,9 @@ class Auth:
             email = self._db.find_user_by(email=email)
             token = _generate_uuid()
             self._db.update_user(email.id, reset_token=token)
+            return token
         except Exception:
-            return None
+            return ValueError
 
 
 def _hash_password(password: str) -> bytes:

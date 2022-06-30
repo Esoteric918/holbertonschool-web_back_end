@@ -74,6 +74,7 @@ def profile():
     else:
         abort(403)
 
+
 @app.route('/reset-password', methods=['POST'], strict_slashes=False)
 def get_reset_password_token():
     """Route for getting a reset password token"""
