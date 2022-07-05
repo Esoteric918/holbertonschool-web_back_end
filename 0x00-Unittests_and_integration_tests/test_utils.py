@@ -57,7 +57,7 @@ class TestMemoize(TestCase):
                 return self.a_method()
 
         test_object = TestClass()
-        test_object.a_method = mock.Mock(return_value=42)
+        test_object.a_method = mock.MagicMock(return_value=42)
         self.assertEqual(42, test_object.a_property)
         test_object.a_method.assert_called_once()
 
