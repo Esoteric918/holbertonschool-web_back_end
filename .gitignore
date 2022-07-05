@@ -3,6 +3,6 @@
 *config*
 *.eslintrc*
 *node_modules*
-*utils*
+
 *__pycache__*
 *a.db*
