@@ -15,12 +15,11 @@ class TestGithubOrgClient(unittest.TestCase):
         ('google'),
         ('abc'),
     ])
-
-    @patch('client.get_json', mock.Mock(return_value={'key':'value'}))
+    @patch('client.get_json', mock.Mock(return_value={'key': 'value'}))
     def test_org(self, org):
         '''test if valid org is returned'''
         cls = GithubOrgClient(org)
-        self.assertEqual(cls.org, {'key':'value'})
+        self.assertEqual(cls.org, {'key': 'value'})
 
     def test_public_repos_url(self):
         '''test GithubOrgClient._public_repos_url method'''
