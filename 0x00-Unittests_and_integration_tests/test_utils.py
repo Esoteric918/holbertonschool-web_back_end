@@ -5,8 +5,9 @@ from unittest import TestCase, mock
 from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
 
-class TestAccessNestedMap(TestCase):
 
+class TestAccessNestedMap(TestCase):
+    '''test the access_nested_map function'''
     @parameterized.expand([
         ({'a': 1}, ('a',), 1),
         ({'a': {'b': 2}}, ('a', 'b'), 2),
@@ -25,7 +26,9 @@ class TestAccessNestedMap(TestCase):
         with self.assertRaises(KeyError):
             access_nested_map(map, path)
 
+
 class TestGetJson(TestCase):
+    '''test the get_json function'''
     @parameterized.expand([
         ('http://example.com', {'payload': True}),
         ('http://holberton.io', {'payload': False})
@@ -34,10 +37,12 @@ class TestGetJson(TestCase):
         '''test get json'''
         with mock.patch('requests.get') as mock_get:
             mock_get.return_value.json.return_value = payload
-            self.assertEqual( payload, get_json(url))
+            self.assertEqual(payload, get_json(url))
+
 
 class TestMemoize(TestCase):
     '''test memoize exception'''
+
     def test_memoize(self):
         '''test memoize'''
         class TestClass:
@@ -48,6 +53,7 @@ class TestMemoize(TestCase):
 
             @memoize
             def a_property(self):
+                '''test a property'''
                 return self.a_method()
 
         test_object = TestClass()
@@ -55,7 +61,9 @@ class TestMemoize(TestCase):
         self.assertEqual(42, test_object.a_property)
         test_object.a_method.assert_called_once()
 
-        with mock.patch.object(TestClass, 'a_method', return_value=42) as mock_method:
+        with mock.patch.object(TestClass,
+                               'a_method',
+                               return_value=42) as mock_method:
             test_object2 = TestClass()
             self.assertEqual(42, test_object2.a_property)
             mock_method.assert_called_once()
