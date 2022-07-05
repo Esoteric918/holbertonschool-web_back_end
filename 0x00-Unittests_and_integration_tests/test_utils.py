@@ -36,3 +36,12 @@ class TestGetJson(TestCase):
             mock_get.return_value.json.return_value = payload
             self.assertEqual( payload, get_json(url))
 
+class TestMemoize(TestCase):
+    @parameterized.expand([
+        (lambda: 42, 42),
+        (lambda: 42, 42),
+        (lambda: 42, 42),
+    ])
+    def test_memoize(self, fn, expected):
+        '''test memoize'''
+        self.assertEqual(expected, fn())
