@@ -5,6 +5,7 @@ from typing import (
     List,
     Dict,
 )
+from unittest import TestCase
 
 from utils import (
     get_json,
