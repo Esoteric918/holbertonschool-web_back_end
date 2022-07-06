@@ -38,5 +38,5 @@ class TestGithubOrgClient(unittest.TestCase):
             license.return_value = {'repos_url': 'url'}
             mock_pub_repos.return_value = cls.org.get('repos_url')
             self.assertEqual(cls.public_repos, 'url')
-            license.assert_called_once_with()
-            mock_pub_repos.assert_called_once_with()
+            license.assert_called_once()
+            mock_pub_repos.assert_called_once()
