@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 '''build out tests for client.py'''
 
+from urllib.error import HTTPError
 from client import GithubOrgClient
 import unittest
 from unittest import mock
 from parameterized import parameterized, parameterized_class
 from unittest.mock import PropertyMock, patch
+from fixtures import *
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -51,21 +53,22 @@ class TestGithubOrgClient(unittest.TestCase):
         cls = GithubOrgClient('org_name')
         self.assertEqual(cls.has_license(repo, license_key), expected)
 
-@parameterized_class([
-    ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos')
+
+@parameterized_class(
+    ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
     TEST_PAYLOAD
-    ])
+    )
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     ''' test the GithubOrgClient.public_repos
         method in an integration test
     '''
-
     def setUpClass(cls):
         '''set up class'''
-        pass
+        cls.get_patcher = patch('requests.get.json', side_effect='get_json')
 
     def tearDownClass(cls):
         '''tear down class'''
-        pass
+        cls.get_patcher.stop()
+
 
 
