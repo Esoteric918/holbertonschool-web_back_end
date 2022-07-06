@@ -68,6 +68,7 @@ class TestIntegrationGithubOrgClient(TestCase):
         '''set up class'''
         cls.get_patcher = patch('requests.get.json', side_effect='get_json')
 
+    @classmethod
     def tearDownClass(cls):
         '''tear down class'''
         cls.get_patcher.stop()
