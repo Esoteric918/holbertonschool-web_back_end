@@ -3,14 +3,14 @@
 
 from urllib.error import HTTPError
 from client import GithubOrgClient
-import unittest
+from unittest import TestCase
 from unittest import mock
 from parameterized import parameterized, parameterized_class
 from unittest.mock import PropertyMock, patch
 from fixtures import *
 
 
-class TestGithubOrgClient(unittest.TestCase):
+class TestGithubOrgClient(TestCase):
     ''' Test the GithubOrgClient class'''
 
     @parameterized.expand([
@@ -58,10 +58,12 @@ class TestGithubOrgClient(unittest.TestCase):
     ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
     TEST_PAYLOAD
     )
-class TestIntegrationGithubOrgClient(unittest.TestCase):
+class TestIntegrationGithubOrgClient(TestCase):
     ''' test the GithubOrgClient.public_repos
         method in an integration test
     '''
+
+    @classmethod
     def setUpClass(cls):
         '''set up class'''
         cls.get_patcher = patch('requests.get.json', side_effect='get_json')
