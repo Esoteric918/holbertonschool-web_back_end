@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''build out tests for client.py'''
 
-from urllib.error import HTTPError
+
 from client import GithubOrgClient
 import unittest
 from unittest import mock
@@ -63,6 +63,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     '''
     @classmethod
     def setUpClass(cls):
+        from urllib.error import HTTPError
         ''' part of the unittest.TestCase API
             set up the class before any tests are run'''
         cls.get_patcher = patch('requests.get.json', side_effect=HTTPError)
