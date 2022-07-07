@@ -61,10 +61,10 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     ''' test the GithubOrgClient.public_repos
         method in an integration test
     '''
-
     @classmethod
     def setUpClass(cls):
-        ''' part of the unittest.TestCase API'''
+        ''' part of the unittest.TestCase API
+            set up the class before any tests are run'''
         cls.get_patcher = patch('requests.get.json', side_effect=HTTPError)
 
     @classmethod
