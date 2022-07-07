@@ -22,13 +22,13 @@ class TestAccessNestedMap(TestCase):
         ({'a': 1}, ('a', 'b'), None)
     ])
     def test_access_nested_map_exception(self, map, path, default=None):
-        '''test access nested map exception'''
+        '''test access nested map exception handling'''
         with self.assertRaises(KeyError):
             access_nested_map(map, path)
 
 
 class TestGetJson(TestCase):
-    '''test the get_json function'''
+    '''test the get_json function '''
     @parameterized.expand([
         ('http://example.com', {'payload': True}),
         ('http://holberton.io', {'payload': False})
@@ -41,19 +41,19 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(TestCase):
-    '''test memoize exception'''
+    '''test memoize exception handling'''
 
     def test_memoize(self):
-        '''test memoize'''
+        '''test memoize function'''
         class TestClass:
 
             def a_method(self):
-                '''test a method'''
+                '''test a method for memoize'''
                 return 42
 
             @memoize
             def a_property(self):
-                '''test a property'''
+                '''test a property for memoize'''
                 return self.a_method()
 
         test_object = TestClass()
