@@ -21,8 +21,8 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale(self):
-    '''get local'''
+def get_locale():
+    '''get locale from request '''
     return request.accept_languages.best_match(Config.LANGUAGES)
 
 
