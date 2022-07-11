@@ -54,29 +54,18 @@ def get_user() -> dict:
         passed in the url.
     '''
     user_id = request.args.get('login_as')
-    if not user_id:
-        return None
     try:
-        user_id = int(user_id)
-        if user_id < 1 or user_id > 4:
-            raise Exception
+        return users.get(int(user_id))
     except Exception:
         return None
-    return users[user_id]
 
 @app.before_request
 def before_request():
     '''before request
 
-        Sets the user dict in the request context.
-        Define a before_request function and use the app.before_request decorator to make it be executed before all other functions. before_request should use get_user to find a user if any, and set it as a global on flask.g.user.
+        Uses get_user to get the user dict and sets it as g.user.
     '''
-    data = get_user()
-    if data:
-        g.user = data
-    else:
-        g.user = None
-
+    g.user = get_user()
 
 
 
