@@ -8,13 +8,13 @@ from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config(object):
-    '''
-    Config class for flask-babel
-    '''
+    ''' Config class for flask-babel '''
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+
 
 app.config.from_object(Config)
 
@@ -27,6 +27,7 @@ def get_local(self):
 
 @app.route('/')
 def index():
+    ''' Index page '''
     return render_template('2-index.html')
 
 
