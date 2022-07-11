@@ -27,12 +27,9 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+
 app.config.from_object(Config)
 
-gettext(u'home_title')
-gettext(u'home_header')
-gettext(u'logged_in_as')
-gettext(u'not_logged_in')
 
 @babel.localeselector
 def get_local():
@@ -44,8 +41,9 @@ def get_local():
     '''
     locale = request.args.get('locale')
     if locale and locale in Config.LANGUAGES:
-            return locale
+        return locale
     return request.accept_languages.best_match(Config.LANGUAGES)
+
 
 def get_user() -> dict:
     '''get user
@@ -59,6 +57,7 @@ def get_user() -> dict:
     except Exception:
         return None
 
+
 @app.before_request
 def before_request():
     '''before request
@@ -66,7 +65,6 @@ def before_request():
         Uses get_user to get the user dict and sets it as g.user.
     '''
     g.user = get_user()
-
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
