@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 '''Basic flask app for i18n'''
 
-import gettext
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
@@ -20,10 +19,6 @@ class Config(object):
 
 
 app.config.from_object(Config)
-''' get text from config '''
-gettext(u'home_title')
-''' get text from config '''
-gettext(u'home_header')
 
 
 @babel.localeselector
