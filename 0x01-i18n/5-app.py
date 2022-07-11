@@ -30,21 +30,7 @@ class Config(object):
 app.config.from_object(Config)
 
 
-@babel.localeselector
-def get_local():
-    '''get local
-
-        Detects if the incoming request contains locale argument and
-        ifs value is a supported locale, return it. If not or if the
-        parameter is not present, resort to the previous default behavior.
-    '''
-    locale = request.args.get('locale')
-    if locale and locale in Config.LANGUAGES:
-        return locale
-    return request.accept_languages.best_match(Config.LANGUAGES)
-
-
-def get_user() -> dict:
+def get_user():
     '''get user
 
         Returns a user dict from the users dict based on the id
@@ -64,6 +50,20 @@ def before_request():
         Uses get_user to get the user dict and sets it as g.user.
     '''
     g.user = get_user()
+
+
+@babel.localeselector
+def get_local():
+    '''get local
+
+        Detects if the incoming request contains locale argument and
+        ifs value is a supported locale, return it. If not or if the
+        parameter is not present, resort to the previous default behavior.
+    '''
+    locale = request.args.get('locale')
+    if locale and locale in Config.LANGUAGES:
+        return locale
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
