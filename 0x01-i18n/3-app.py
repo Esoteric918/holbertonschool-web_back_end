@@ -20,7 +20,9 @@ class Config(object):
 
 
 app.config.from_object(Config)
+''' get text from config '''
 gettext(u'home_title')
+''' get text from config '''
 gettext(u'home_header')
 
 
