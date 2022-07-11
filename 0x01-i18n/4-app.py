@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 '''Basic flask app for i18n'''
 
-from gettext import gettext
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
 app = Flask(__name__)
 babel = Babel(app)
+
 
 class Config(object):
     '''
@@ -17,13 +17,13 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+
 app.config.from_object(Config)
-gettext(u'home_title')
-gettext(u'home_header')
+
 
 @babel.localeselector
-def get_local():
-    '''get local
+def get_locale():
+    '''get locale
 
         Detects if the incoming request contains locale argument and
         ifs value is a supported locale, return it. If not or if the
@@ -31,7 +31,7 @@ def get_local():
     '''
     locale = request.args.get('locale')
     if locale and locale in Config.LANGUAGES:
-            return locale
+        return locale
     return request.accept_languages.best_match(Config.LANGUAGES)
 
 
