@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''Basic flask app for i18n'''
 
+from email.policy import strict
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
@@ -20,12 +21,12 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_local(self):
+def get_locale(self):
     '''get local'''
     return request.accept_languages.best_match(Config.LANGUAGES)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     ''' Index page '''
     return render_template('2-index.html')
