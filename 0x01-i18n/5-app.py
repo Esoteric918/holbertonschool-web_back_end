@@ -31,7 +31,8 @@ app.config.from_object(Config)
 
 gettext(u'home_title')
 gettext(u'home_header')
-
+gettext(u'logged_in_as')
+gettext(u'not_logged_in')
 
 @babel.localeselector
 def get_local():
@@ -61,19 +62,21 @@ def get_user() -> dict:
             raise Exception
     except Exception:
         return None
-    return
+    return users[user_id]
 
 @app.before_request
 def before_request():
     '''before request
 
         Sets the user dict in the request context.
+        Define a before_request function and use the app.before_request decorator to make it be executed before all other functions. before_request should use get_user to find a user if any, and set it as a global on flask.g.user.
     '''
     data = get_user()
     if data:
         g.user = data
     else:
         g.user = None
+
 
 
 

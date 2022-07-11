@@ -19,7 +19,8 @@ msgstr ""
 "Generated-By: Babel 2.10.3\n"
 
 #app/index
-msgid "hello_title"
+
+msgid "home_title"
 msgstr "Bienvenue chez Holberton"
 
 msgid "home_header"
