@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''Basic flask app for i18n'''
 
-from gettext import gettext
+
 from flask import Flask, g, render_template, request
 from flask_babel import Babel
 from flask_babel import gettext as _
