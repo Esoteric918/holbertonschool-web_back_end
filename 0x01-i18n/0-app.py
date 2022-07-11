@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''Basic flask app for i18n'''
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-#from flask_babel import Babel, gettext, lazy_gettext
+from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
