@@ -48,21 +48,27 @@ def before_request():
 
 @babel.timezoneselector
 def get_timezone():
-    '''get timezone from ULR
-    Find timezone parameter in URL parameters
-    Find time zone from user settings
+    ''' get timezone from ULR
+        Find timezone parameter in URL parameters
+        Find time zone from user settings
     '''
-    tzn = request.args.get('timezone')
-    if tzn:
-        return tzn
-    try:
-        user = get_user()
-        if user and user['timezone'] in pytz.all_timezones:
-            return user['timezone']
-        raise pytz.exceptions.UnknownTimeZoneError
-    except pytz.exceptions.UnknownTimeZoneError:
-        return 'UTC'
-
+    tz = request.args.get('timezone')
+    if tz:
+        try:
+            timezone(tz)
+            return tz
+        except UnknownTimeZoneError:
+            pass
+    if g.user:
+        user_tz = g.user.get('timezone')
+        if user_tz:
+            # 2. User settings
+            try:
+                timezone(user_tz)
+                return user_tz
+            except UnknownTimeZoneError:
+                pass
+    return Config.BABEL_DEFAULT_TIMEZONE
 
 
 
