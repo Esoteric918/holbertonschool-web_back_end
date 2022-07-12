@@ -51,13 +51,18 @@ def get_local():
     locale = request.args.get('locale')
     if locale and locale in Config.LANGUAGES:
         return locale
-    return request.accept_languages.best_match(Config.LANGUAGES)
+    try:
+        user = get_user()
+        if user and user['locale'] in Config.LANGUAGES:
+            return user['locale']
+    except Exception:
+        return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     ''' Return the index page '''
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == '__main__':
