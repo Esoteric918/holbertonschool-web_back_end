@@ -31,11 +31,7 @@ app.config.from_object(Config)
 
 
 def get_user():
-    '''get user
-
-        Returns a user dict from the users dict based on the id
-        passed in the url.
-    '''
+    """Get user from request"""
     user_id = request.args.get('login_as')
     try:
         return users.get(int(user_id))
@@ -45,10 +41,7 @@ def get_user():
 
 @app.before_request
 def before_request():
-    '''before request
-
-        Uses get_user to get the user dict and sets it as g.user.
-    '''
+    """Before request to stash user"""
     g.user = get_user()
 
 
