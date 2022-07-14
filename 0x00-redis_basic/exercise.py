@@ -50,6 +50,7 @@ def replay(method: Callable) -> Callable:
             print(f"{key}({input}) -> {output}")
         return method(self, *args)
 
+    return wrapper
 class Cache:
     ''''A Redis-based cache'''
 
