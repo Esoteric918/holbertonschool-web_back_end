@@ -21,6 +21,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     '''adds the call history to the cache'''
 
@@ -35,22 +36,19 @@ def call_history(method: Callable) -> Callable:
 
     return wrapper
 
-# implement a replay function to display the history of calls of a particular function.
-# Use keys generated in previous tasks to generate the following output:
 
-def replay(method: Callable) -> Callable:
-    '''replays the call history'''
-    @wraps(method)
-    def wrapper(self, *args) -> Union[str, int]:
-        '''wrapper to replay the call history'''
-        key = method.__qualname__
-        inputs = self._redis.lrange(f"{key}:inputs", 0, -1)
-        outputs = self._redis.lrange(f"{key}:outputs", 0, -1)
-        for input, output in zip(inputs, outputs):
-            print(f"{key}({input}) -> {output}")
-        return method(self, *args)
+def replay(method: Callable) -> None:
+    '''replays method calls history'''
+    reds = redis.Redis()
+    qual = method.__qualname__
+    inputs = reds._redis.lrange(f"{qual}:inputs", 0, -1)
+    outputs = reds._redis.lrange(f"{qual}:outputs", 0, -1)
+    print(f"{qual} was called {len(inputs)} times")
 
-    return wrapper
+    for i, o in zip(inputs, outputs):
+        print(f"{qual}(*{(i).decode('utf-8')}) -> {(o).decode('utf-8')}")
+
+
 class Cache:
     ''''A Redis-based cache'''
 
