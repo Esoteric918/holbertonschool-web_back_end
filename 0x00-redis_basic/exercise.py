@@ -64,8 +64,10 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-
-    def get(self, key: str, fn: callable = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: callable = None) -> Union[str,
+                                                          bytes,
+                                                          int,
+                                                          float]:
         ''' Get data from the cache '''
         data = self._redis.get(key)
         if fn:
