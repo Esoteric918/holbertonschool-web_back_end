@@ -2,7 +2,6 @@
 ''' Exercise: Redis basic '''
 
 from functools import wraps
-from re import S
 from typing import Callable, Union
 import uuid
 import redis
