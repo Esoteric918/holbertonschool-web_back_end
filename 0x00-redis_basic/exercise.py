@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 ''' Exercise: Redis basic '''
 
+from functools import wraps
 from re import S
 from typing import Callable, Union
 import uuid
@@ -12,6 +13,7 @@ def count_calls(method: Callable) -> Callable:
 
     key = method.__qualname__
 
+    @wraps(method)
     def wrapper(self, *args, **kwargs) -> Union[str, int]:
         '''wrapper to increment the number of calls'''
         key = method.__qualname__
