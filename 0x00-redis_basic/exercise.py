@@ -29,9 +29,9 @@ def call_history(method: Callable) -> Callable:
         '''wrapper to add the call history'''
         key = method.__qualname__
         self._redis.rpush(f"{key}:inputs", str(args))
-
-        self._redis.rpush(f"{key}:outputs", method(self, *args))
-        return method(self, *args)
+        op = method(self, *args)
+        self._redis.rpush(f"{key}:outputs", op)
+        return op
 
     return wrapper
 
@@ -50,7 +50,6 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    # create a get method that take a key string argument and an optional Callable argument named fn. This callable will be used to convert the data back to the desired format
 
     def get(self, key: str, fn: callable = None) -> Union[str, bytes, int, float]:
         ''' Get data from the cache '''
