@@ -20,5 +20,19 @@ class Cache:
 
     # create a get method that take a key string argument and an optional Callable argument named fn. This callable will be used to convert the data back to the desired format
 
-    def get(key: str ):
-        pass
+    def get(self, key: str, fn: callable = None) -> Union[str, bytes, int, float]:
+        ''' Get data from the cache '''
+        data = self._redis.get(key)
+        if fn:
+            data = fn(data)
+        return data
+
+    def get_str(self, key: str) -> str:
+        ''' Get data from the cache '''
+        data = self._redis.get(key)
+        return data.decode('utf-8')
+
+    def get_int(self, key: str) -> int:
+        ''' Get data from the cache '''
+        data = self._redis.get(key)
+        return int(data)
