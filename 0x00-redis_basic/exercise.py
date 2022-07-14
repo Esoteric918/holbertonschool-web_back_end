@@ -21,6 +21,21 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+def call_history(method: Callable) -> Callable:
+    '''adds the call history to the cache'''
+
+    # In the new function that the decorator will return, use rpush to append the input arguments. Remember that Redis can only store strings, bytes and numbers. Therefore, we can simply use str(args) to normalize. We can ignore potential kwargs for now.
+    key = method.__qualname__
+
+    @wraps(method)
+    def wrapper(self, *args) -> Union[str, int]:
+        '''wrapper to add the call history'''
+        key = method.__qualname__
+        self._redis.rpush(key, str(args))
+        return method(self, *args)
+
+    return wrapper
+
 class Cache:
     ''''A Redis-based cache'''
 
