@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 ''' init func to list all documents in a collection '''
 
+from pymongo import MongoClient
+
 
 def list_all(mongo_collection):
-    """
-    List all documents in a collection
-    """
+
+    ''' list all documents in a collection '''
     for doc in mongo_collection.find():
-        print(doc)
+        return doc
