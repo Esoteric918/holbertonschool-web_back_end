@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-// Update all documents matching name="Holberton school" document with address attribute
+// adds a new attribute to a document in the collection school
 db.school.update(
-	{name: "Holberton school"},
-	{ $set: {address: "972 Mission street"} },
-	{multi: true}
-=======
-// Update all documents matching name="Holberton school" document with address attribute:
-db.school.update(
-        {name: "Holberton school"},
-        { $set: {address: "972 Mission street"} },
-        {multi: true}
->>>>>>> f8875b504051a44da2299ee201a00a76fe3f66c3
+    {name: "Holberton school"},
+    { $set: {address: "972 Mission Street"} };
+    {multi: true}
 )
