@@ -20,8 +20,8 @@ countStudents('./database.csv', 'utf8')
     console.log(`Number of students: ${students.length}`);
     console.log(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`);
     console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
-  }).catch((err) => {
-    console.log('Cannot load the database', err);
+  }).catch(() => {
+    console.log('Cannot load the database');
   });
 
 module.exports = countStudents;
