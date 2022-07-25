@@ -1,5 +1,3 @@
-// Using the database database.csv (provided in project description), create a function countStudents in the file 2-read_file.js
-
 const fs = require('fs');
 
 const countStudents = (path) => {
@@ -8,9 +6,9 @@ const countStudents = (path) => {
   }
   const data = fs.readFileSync(path, 'utf8');
 
-  let lines = data.split('\n').slice(1);
+  const lines = data.split('\n').slice(1);
 
-  const fields = lines.map(line => line.split(','))
+  const fields = lines.map((line) => line.split(','))
     .filter((student) => student.length === 4);
 
   const students = fields.map((student) => ({
@@ -29,6 +27,5 @@ const countStudents = (path) => {
   console.log(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`);
   console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
 };
-
 
 module.exports = countStudents;
