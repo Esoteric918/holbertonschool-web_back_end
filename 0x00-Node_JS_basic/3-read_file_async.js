@@ -2,7 +2,7 @@ const fs = require('fs');
 const { promisify } = require('util');
 
 const countStudents = async (path) => {
-  const data = await promisify(fs.readFile)(path, 'utf8');
+  const data = ''
 
   try {
     data = await fs.promises.readFile(path, 'utf8');
@@ -26,11 +26,11 @@ const countStudents = async (path) => {
   const sweStudents = students.filter((student) => student.field === 'SWE')
     .map((student) => student.firstname);
 
-  console.log (`Numbert of students: ${students.length}`);
+  console.log(`Numbert of students: ${students.length}`);
   console.log(`Numbert of students in CS: ${csStudents.length}`);
   console.log(`Numbert of students in SWE: ${sweStudents.length}`);
 
-  return {students, csStudents, sweStudents};
+  return { students, csStudents, sweStudents };
 };
 
 module.exports = countStudents;
