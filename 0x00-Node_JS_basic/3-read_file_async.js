@@ -16,20 +16,16 @@ const countStudents = async (path) => {
   const fields = lines.map((lines) => lines.split(',')[3]);
   const unique = [...new Set(fields)];
 
-
   const newDic = {};
 
-  for (let i = 0; i < unique.length; ++i) {
-    const count = fields.filter(field => field === unique[i]).length;
+  for (let i = 0; i < unique.length; i += 1) {
+    const count = fields.filter((field) => field === unique[i]).length;
 
     const namesList = lines
-      .filter((l) =>  l.split(',')[3] === unique[i])
+      .filter((l) => l.split(',')[3] === unique[i])
       .map((l) => l.split(',')[0]);
 
-
-    console.log(`Number of students in ${unique[i]}: ${count}. List: ${namesList.join(', ')}`,
-
-  );
+    console.log(`Number of students in ${unique[i]}: ${count}. List: ${namesList.join(', ')}`);
     newDic[unique[i]] = {
       count,
       namesList,
