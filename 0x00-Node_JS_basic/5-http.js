@@ -8,7 +8,7 @@ const DATABASE = process.argv[2];
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.statusCode = 200;
-    res.write('Hello Holberon School!');
+    res.write('Hello Holberton School!');
     res.end();
   } else if (req.url === '/students') {
     try {
