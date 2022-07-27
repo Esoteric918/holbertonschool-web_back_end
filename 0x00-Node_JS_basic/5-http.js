@@ -13,7 +13,7 @@ const app = http.createServer(async (req, res) => {
       res.end();
     } else if (req.url === '/students') {
       res.statusCode = 200;
-      res.write('This is the list of out students\n');
+      res.write('This is the list of our students\n');
       try {
         const returnValue = await countStudents(DATABASE);
         console.log(typeof(returnValue));
