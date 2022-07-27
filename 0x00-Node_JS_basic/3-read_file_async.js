@@ -35,8 +35,8 @@ const countStudents = async (path) => {
 
   return {
     total,
-    fieldList: newDic
-   };
+    fieldList: newDic,
+  };
 };
 
 module.exports = countStudents;
