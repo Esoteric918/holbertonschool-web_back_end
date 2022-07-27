@@ -31,7 +31,7 @@ const app = http.createServer(async (req, res) => {
         res.end();
       } catch (err) {
         res.statusCode = 404;
-        res.write(`${err.message}\n`);
+        res.write(`${err.message}`);
         res.end();
       }
     }
