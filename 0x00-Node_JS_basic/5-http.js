@@ -10,9 +10,9 @@ const app = http.createServer(async (req, res) => {
     res.write('Hello Holberon School!');
     res.end();
   } else if (req.url === '/students') {
+    res.write('This is the list of our students\n');
     try {
       const returnValue = await countStudents(DATABASE);
-      res.write('This is the list of our students\n');
       const students = returnValue.fieldList;
       res.write(`Number of students: ${returnValue.total}\n`);
       for (const key in students) {
