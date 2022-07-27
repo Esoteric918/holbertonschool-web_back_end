@@ -17,7 +17,7 @@ const countStudents = async (path) => {
   const unique = [...new Set(fields)];
 
   const newDic = {};
-
+  let total = 0;
   for (let i = 0; i < unique.length; i += 1) {
     const count = fields.filter((field) => field === unique[i]).length;
 
@@ -30,8 +30,13 @@ const countStudents = async (path) => {
       count,
       namesList,
     };
+    total += count;
   }
-  return newDic;
+
+  return {
+    total,
+    fieldList: newDic
+   };
 };
 
 module.exports = countStudents;
