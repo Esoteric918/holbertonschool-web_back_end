@@ -8,11 +8,11 @@ const DATABASE = process.argv[2];
 const app = http.createServer(async (req, res) => {
   if (req.method === 'GET') {
     if (req.url === '/') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.statusCode = 200;
       res.write('Hello Holberon School!');
       res.end();
     } else if (req.url === '/students') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.statusCode = 200;
       res.write('This is the list of out students\n');
       try {
         const returnValue = await countStudents(DATABASE);
