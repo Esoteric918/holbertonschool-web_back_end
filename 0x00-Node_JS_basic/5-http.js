@@ -6,15 +6,16 @@ const port = 1245;
 const DATABASE = process.argv[2];
 
 const app = http.createServer(async (req, res) => {
-  if (req.method === 'GET') {
     if (req.url === '/') {
-      res.statusCode = 200;
+      console.log("1")
+      res.writeHead(200, { 'Content-Type': 'text/http' });
       res.write('Hello Holberon School!');
       res.end();
     } else if (req.url === '/students') {
-      res.write('This is the list of our students\n');
       try {
         const returnValue = await countStudents(DATABASE);
+        res.write('This is the list of our students\n');
+        console.log(returnValue);
         const students = returnValue.fieldList;
         res.write(`Number of students: ${returnValue.total}\n`);
         for (const key in students) {
@@ -25,13 +26,13 @@ const app = http.createServer(async (req, res) => {
             }
           }
         }
-        res.statusCode = 200;
+        console.log("2")
+
         res.end();
       } catch (err) {
-        res.statusCode = 404;
+        res.statusCode = 500;
         res.end(err.message);
       }
-    }
   }
 }).listen(port);
 
