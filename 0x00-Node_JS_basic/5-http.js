@@ -7,10 +7,12 @@ const DATABASE = process.argv[2];
 
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
+    res.statusCode = 200;
     res.write('Hello Holberon School!');
     res.end();
   } else if (req.url === '/students') {
     try {
+      res.statusCode = 200;
       const returnValue = await countStudents(DATABASE);
       res.write('This is the list of our students\n');
       const students = returnValue.fieldList;
