@@ -16,8 +16,6 @@ const app = http.createServer(async (req, res) => {
       res.write('This is the list of our students\n');
       try {
         const returnValue = await countStudents(DATABASE);
-        console.log(typeof(returnValue));
-        console.log(returnValue);
         const students = returnValue.fieldList;
         res.write(`Number of students: ${returnValue.total}\n`);
         for (const key in students) {
