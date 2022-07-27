@@ -16,6 +16,8 @@ const app = http.createServer(async (req, res) => {
       res.write('This is the list of out students\n');
       try {
         const returnValue = await countStudents(DATABASE);
+        console.log(typeof(returnValue));
+        console.log(returnValue);
         const students = returnValue.fieldList;
         res.write(`Number of students: ${returnValue.total}\n`);
         for (const key in students) {
@@ -28,7 +30,8 @@ const app = http.createServer(async (req, res) => {
         }
         res.end();
       } catch (err) {
-        res.write(`Error: ${err.message}\n`);
+        res.statusCode = 404;
+        res.write(`${err.message}\n`);
         res.end();
       }
     }

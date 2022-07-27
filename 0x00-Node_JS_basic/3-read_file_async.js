@@ -5,6 +5,7 @@ const countStudents = async (path) => {
 
   try {
     data = await fs.promises.readFile(path, 'utf-8');
+    console.log(typeof(data));
   } catch (error) {
     throw new Error('Cannot load the database');
   }
