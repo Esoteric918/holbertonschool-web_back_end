@@ -24,7 +24,7 @@ app
       res.end();
     } catch (err) {
       res.statusCode = 404;
-      res.send('This is the list of our students\n');
+      res.write('This is the list of our students\n');
       res.end(err.message);
     }
   }).listen(1245);
