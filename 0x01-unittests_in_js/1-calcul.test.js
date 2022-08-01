@@ -45,7 +45,7 @@ describe('calculateNumber - SUBTRACT', () => {
 // test for DIV
 describe('calculateNumber - DIVIDE', () => {
   it("Test that calculateNumber divides two rounded numbers", () => {
-    assert.equal(calculateNumber('DIVIDE', 1.4, 2.4), 0);
+    assert.equal(calculateNumber('DIVIDE', 1.4, 2.4), 0.5);
     assert.equal(calculateNumber('DIVIDE', 2.9, 1.4), 3);
     assert.equal(calculateNumber('DIVIDE', -10, 2.3), -5);
     assert.equal(calculateNumber('DIVIDE', -9, -2.9), 3);
@@ -60,6 +60,6 @@ describe('calculateNumber - DIVIDE', () => {
 
   it('divide by 0', () => {
     assert.equal(calculateNumber('DIVIDE', 1, 0), 'Error');
-  })
+  });
 
 });
