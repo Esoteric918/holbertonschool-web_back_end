@@ -1,0 +1,15 @@
+{
+    "name": "0x01-unittest_js",
+    "version": "0.0.1",
+    "description": "",
+    "main": "",
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^10.0.0"
+    }
+}
