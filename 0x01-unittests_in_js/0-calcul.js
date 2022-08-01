@@ -3,7 +3,7 @@
 
 const calculateNumber = (a, b) => {
   // round a and b and return the sum
-    return Math.round(a) + Math.round(b);
+    return Math.ceil(a) + Math.ceil(b);
 }
 
 module.exports = calculateNumber;
