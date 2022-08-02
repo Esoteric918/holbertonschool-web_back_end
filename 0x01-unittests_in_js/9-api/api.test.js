@@ -15,19 +15,18 @@ describe('test - GET /api', () => {
 });
 
 describe('test - GET /api/cart/:id([0-9]*)', () => {
-  it('Tests GET returns correct code and res', (done) => {
+  it('Tests if /cart/:id([0-9]*) is working', (done) => {
     request('http://localhost:7865/cart/1', (error, response, body) => {
       expect(response.statusCode).to.equal(200);
       expect(body).to.equal('Payment methods for cart 1');
       done();
     });
-  }).timeout(5000);
+  });
 
-  it('Tests GET returns correct code and res', (done) => {
+  it('Tests /cart/:id fails when NaN', (done) => {
     request('http://localhost:7865/cart/a', (error, response, body) => {
       expect(response.statusCode).to.equal(404);
-      expect(body).to.equal('Cart a not found');
       done();
-    }).timeout(5000);
+    });
   })
 });
