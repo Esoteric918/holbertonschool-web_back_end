@@ -13,3 +13,16 @@ describe('test - GET /api', () => {
     });
   });
 });
+// Add a new test suite for the cart page:
+// Correct status code when :id is a number?
+// Correct status code when :id is NOT a number (=> 404)?
+
+describe('test - GET /api/cart/:id([0-9]*)', () => {
+  it('Tests GET returns correct code and res', (done) => {
+    request('http://localhost:7865/cart/1', (error, response, body) => {
+      expect(response.statusCode).to.equal(200);
+      expect(body).to.equal('Payment methods for cart 1');
+      done();
+    });
+  }).timeout(5000);
+});
