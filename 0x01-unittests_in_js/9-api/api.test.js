@@ -22,4 +22,12 @@ describe('test - GET /api/cart/:id([0-9]*)', () => {
       done();
     });
   }).timeout(5000);
+
+  it('Tests GET returns correct code and res', (done) => {
+    request('http://localhost:7865/cart/a', (error, response, body) => {
+      expect(response.statusCode).to.equal(404);
+      expect(body).to.equal('Cart a not found');
+      done();
+    }).timeout(5000);
+  }
 });
