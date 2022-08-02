@@ -29,5 +29,5 @@ describe('test - GET /api/cart/:id([0-9]*)', () => {
       expect(body).to.equal('Cart a not found');
       done();
     }).timeout(5000);
-  }
+  })
 });
