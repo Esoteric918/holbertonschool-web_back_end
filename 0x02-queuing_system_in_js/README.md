@@ -11,7 +11,7 @@
 - How to the build a basic Express app interacting with a Redis server and queue
 
 ## Required Files for the Project
-[package.json]("")
+[package.json](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x02-queuing_system_in_js/package.json)
 
     {
         "name": "queuing_system_in_js",
@@ -50,7 +50,7 @@
         }
     }
 
-[.babelrc]("https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x02-queuing_system_in_js/.babelrc")
+[.babelrc](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x02-queuing_system_in_js/.babelrc)
 
     {
         "presets": [
