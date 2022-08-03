@@ -50,7 +50,7 @@
         }
     }
 
-[.babelrc]('')
+[.babelrc](https://github.com/Esoteric918/holbertonschool-web_back_end/blob/main/0x02-queuing_system_in_js/.babelrc)
 
     {
         "presets": [
