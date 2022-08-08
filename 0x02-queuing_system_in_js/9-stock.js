@@ -54,21 +54,24 @@ app.get('/list_products/:itemId', (req, res) => {
   const item = getItemById(parseInt(itemId));
   if (item) {
     getCurrentReservedStockById(itemId).then(stock => {
-      item.intailAvailableStock = stock;
+      item.initialAvailableQuantity = stock;
       res.send(item);
     })
   } else {
     res.status(404).send({ status: 'Product not found' });
   }
 
-  // Reserve product and adjust stock in Redis
+// Reserve product and adjust stock in Redis
 app.post('/reserve_products/:itemId/', (req, res) => {
   const itemId = req.params.itemId;
   const item = getItemById(parseInt(itemId));
+  // Check if the product exists
   if (!item) res.status(404).send({ status: 'Product not found' });
-  if(item.intailAvailableStock < 0) res.status(400).send({ status: 'Not enough stock' });
+  // Check if the product is available
+  if(item.initialAvailableQuantity < 0) res.status(400).send({ status: 'Not enough stock' });
   else {
-      reserveStockById(itemId, item.intailAvailableStock - 1);
+      // Reserve product and adjust stock in Redis
+      reserveStockById(itemId, item.initialAvailableQuantity - 1);
       res.send({ "status":"Reservation confirmed", "itemId": itemId });
       }
     })
