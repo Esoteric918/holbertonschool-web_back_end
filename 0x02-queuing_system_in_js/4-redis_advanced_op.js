@@ -17,6 +17,7 @@ client
   client.hset("HolbertonSchools", 'Bogota', '20', redis.print);
   client.hset("HolbertonSchools", 'Cali', '40', redis.print);
   client.hset("HolbertonSchools",'Paris', '2', redis.print);
+  client.hset("HolbertonSchools",'Oklahoma', '75', redis.print); // add a new field for testing
 
 
 function getCache() {
@@ -27,4 +28,5 @@ function getCache() {
     console.log(obj);
   })
 }
+
 getCache();
