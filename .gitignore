@@ -3,7 +3,7 @@
 *config*
 *.eslintrc*
 *node_modules*
-*redis*
+*redis-6.0.10*
 *__pycache__*
 *a.db*
 *tmp*
