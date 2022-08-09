@@ -1,8 +1,6 @@
 // Test suite for the createPushNotificationsJobs function
 import createPushNotificationsJobs from './8-job.js';
-
-const { expect } = require('chai');
-
+const expect = require('chai').expect;
 
 const kue = require('kue'),
   queue = kue.createQueue();
@@ -14,9 +12,9 @@ describe('createPushNotificationsJobs test suite', () => {
 
   it('should throw an error if jobs is not an array', () => {
 
-    expect(() => createPushNotificationsJobs("4", queue)).to.throw(Error, 'Jobs is not an array');
-    expect(() => createPushNotificationsJobs({"key" : "value"}, queue)).to.throw(Error, 'Jobs is not an array');
-    expect(() => createPushNotificationsJobs(4, queue)).to.throw(Error, 'Jobs is not an array');
+    expect(() => createPushNotificationsJobs("string", queue)).to.throw(Error, 'Jobs is not an array');
+    expect(() => createPushNotificationsJobs({ key : "value" }, queue)).to.throw(Error, 'Jobs is not an array');
+    expect(() => createPushNotificationsJobs(NaN, queue)).to.throw(Error, 'Jobs is not an array');
   }),
 
   it('Test if new job created for the queue', () => {
