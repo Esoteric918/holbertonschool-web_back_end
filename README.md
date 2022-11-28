@@ -2,3 +2,5 @@
 
 - Redis
 - MySQL 
+- NoSQL
+- 
